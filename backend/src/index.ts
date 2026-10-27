@@ -7,6 +7,7 @@ import path from "node:path";
 
 import { clerkMiddleware } from "@clerk/express";
 import { clerkWebhookHandler } from "./webhooks/clerk";
+import { polarWebhookHandler } from "./webhooks/polar";
 import { getEnv } from "./lib/env";
 import keppAliveCron from "./lib/cron";
 
@@ -26,16 +27,16 @@ app.post("/webhooks/clerk", rawJson, (req, res) => {
     void clerkWebhookHandler(req, res);
 });
 
-//app.post("/webhooks/clerk", rawJson, (req, res) => {
- //   void polarWebhookHandler(req, res);
-//});
+app.post("/webhooks/clerk", rawJson, (req, res) => {
+    void polarWebhookHandler(req, res);
+});
 
 app.use(express.json());
 app.use(cors());
 app.use(clerkMiddleware());
 
-app.get("/health", (_req, res)=>  {
-    res.json({ ok:true});
+app.get("/health", (_req, res) => {
+    res.json({ ok: true });
 });
 
 app.use("/api/me", meRouter);
@@ -44,7 +45,7 @@ app.use("/api/stream", streamRouter);
 app.use("/api/checkout", checkoutRouter);
 
 
-const publicDir = path.join(process.cwd(), "public") 
+const publicDir = path.join(process.cwd(), "public")
 if (fs.existsSync(publicDir)) {
     app.use(express.static(publicDir))
 
@@ -68,7 +69,7 @@ if (fs.existsSync(publicDir)) {
 
 app.listen(env.PORT, () => {
     console.log("Listening on Port:", env.PORT)
-    if(env.NODE_ENV ==="production") {
+    if (env.NODE_ENV === "production") {
         keppAliveCron.start();
     }
 });
