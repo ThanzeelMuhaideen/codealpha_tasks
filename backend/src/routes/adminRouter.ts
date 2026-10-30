@@ -6,7 +6,7 @@ import {
   listAdminProducts,
   requireAdmin,
   updateAdminProduct,
-} from "../controllers/adminControllers";
+} from "../controllers/adminController";
 
 const router = Router();
 
