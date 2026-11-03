@@ -20,5 +20,3 @@ export function getStreamChatServer(env: Env) {
 export function streamUserId(clerkUserId: string) {
   return `clerk_${clerkUserId}`;
 }
-
-
