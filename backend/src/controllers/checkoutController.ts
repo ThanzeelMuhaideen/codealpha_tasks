@@ -67,11 +67,11 @@ export async function createCheckout(req: Request, res: Response, next: NextFunc
 
         for (const line of parsed.data.items) {
             const p = byId.get(line.productId)!;
-            totalCents += Number(p.priceCents) * line.quantity;
+            totalCents += p.priceCents * line.quantity;
             lines.push({
                 productId: p.id,
                 quantity: line.quantity,
-                unitPriceCents: Number(p.priceCents),
+                unitPriceCents: p.priceCents,
             });
         }
 

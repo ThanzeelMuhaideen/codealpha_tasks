@@ -8,7 +8,7 @@ export async function listProducts(req: Request, res: Response, next: NextFuncti
         const cat = typeof req.query.category === "string" ? req.query.category.trim() : "";
 
         const activeOnly = eq(products.active, true);
-        const whereClause = cat ? and(activeOnly, eq(products.catregory, cat)) : activeOnly;
+        const whereClause = cat ? and(activeOnly, eq(products.category, cat)) : activeOnly;
 
         const rows = await db
             .select()
@@ -25,7 +25,7 @@ export async function listProducts(req: Request, res: Response, next: NextFuncti
 export async function getCategories(_req: Request, res: Response, next: NextFunction) {
     try {
         const rows = await db
-            .select({ category: products.catregory })
+            .select({ category: products.category })
             .from(products)
             .where(eq(products.active, true));
 
@@ -45,7 +45,7 @@ export async function getProductBySlug(req: Request, res: Response, next: NextFu
             .where(eq(products.slug, req.params.slug as string))
             .limit(1);
 
-        if (!row || !row.active) return res.status(404).json({ error: "Not Found" });
+        if (!row || !row.active) return res.status(404).json({ error: "Not found" });
 
         res.json({ product: row });
     } catch (e) {

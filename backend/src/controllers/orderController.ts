@@ -27,10 +27,10 @@ export async function listOrders(req: Request, res: Response, next: NextFunction
     const rows = isStaff(localUser.role)
       ? await db.select().from(orders).orderBy(desc(orders.createdAt))
       : await db
-          .select()
-          .from(orders)
-          .where(eq(orders.userId, localUser.id))
-          .orderBy(desc(orders.createdAt));
+        .select()
+        .from(orders)
+        .where(eq(orders.userId, localUser.id))
+        .orderBy(desc(orders.createdAt));
 
     const orderIds = rows.map((r) => r.id);
     const previewByOrder = new Map();
