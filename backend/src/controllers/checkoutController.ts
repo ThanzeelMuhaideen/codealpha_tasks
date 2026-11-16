@@ -88,7 +88,7 @@ export async function createCheckout(req: Request, res: Response, next: NextFunc
                 userId: localUser.id,
                 lines,
                 totalCents,
-                currency: "LKR",
+                currency: "lkr",
             })
             .returning();
 
