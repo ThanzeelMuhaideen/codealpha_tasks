@@ -18,7 +18,7 @@ function checkoutBreadcrumbs() {
         category: "checkout",
         message: "Cart totals recomputed",
         level: "info",
-        data: { subtotalLKR: 184.5, lineCount: 3 },
+        data: { subtotalLkr: 184.5, lineCount: 3 },
     });
 }
 
@@ -34,8 +34,8 @@ function sendPaymentDeclinedError() {
         logDemo({
             area: "payments",
             paymentIntentId,
-            amountLKR: 184.5,
-            currency: "LKR",
+            amountLkr: 184.5,
+            currency: "lkr",
         }),
     );
     checkoutBreadcrumbs();
@@ -68,8 +68,8 @@ function sendPaymentDeclinedError() {
         scope.setTag("payment.processor", "stripe");
         scope.setLevel("error");
         scope.setContext("payment", {
-            amountLKR: 184.5,
-            currency: "LKR",
+            amountLkr: 184.5,
+            currency: "lkr",
             last4: "4242",
             declineCode: "card_declined",
             networkDeclineCode: "05",

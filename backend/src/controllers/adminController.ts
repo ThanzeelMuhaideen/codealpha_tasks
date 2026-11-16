@@ -8,7 +8,7 @@ import { db } from "../db";
 import { orderItems, products } from "../db/schema";
 import { count, desc, eq } from "drizzle-orm";
 import { z } from "zod";
-import { deleteImageKitAsset } from "../lib/imageKit";
+import { deleteImageKitAsset } from "../lib/imagekit";
 
 const env = getEnv();
 
@@ -18,7 +18,7 @@ const productCreate = z.object({
   category: z.string().min(1).default("General"),
   description: z.string().default(""),
   priceCents: z.number().int().positive(),
-  currency: z.string().min(1).default("LKR"),
+  currency: z.string().min(1).default("lkr"),
   imageUrl: z
     .union([z.string().url(), z.literal("")])
     .optional()

@@ -8,7 +8,7 @@ export function AdminProductForm({ initial, saving, error, getToken, onCancel, o
     const [category, setCategory] = useState(initial?.category ?? "General");
     const [description, setDescription] = useState(initial?.description ?? "");
     const [priceCents, setPriceCents] = useState(initial ? String(initial.priceCents / 100) : "");
-    const [currency, setCurrency] = useState(initial?.currency ?? "LKR");
+    const [currency, setCurrency] = useState(initial?.currency ?? "lkr");
     const [imageUrl, setImageUrl] = useState(initial?.imageUrl ?? "");
     const [imageKitFileId, setImageKitFileId] = useState(initial?.imageKitFileId ?? "");
     const [active, setActive] = useState(initial?.active ?? true);
