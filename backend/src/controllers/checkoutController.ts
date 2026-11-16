@@ -101,7 +101,7 @@ export async function createCheckout(req: Request, res: Response, next: NextFunc
                 [env.POLAR_CHECKOUT_PRODUCT_ID]: [
                     {
                         amount_type: "fixed",
-                        price_currency: "LKR",
+                        price_currency: "lkr",
                         price_amount: totalCents,
                     },
                 ],
